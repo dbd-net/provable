@@ -6,7 +6,7 @@ This package provides the means to create provibly fair random numbers and prova
 
 via composer:
 ```
-composer require dbdnet/provable ^1.0
+composer require gamebetr/provable ^1.0
 ```
 
 ## Basic Useage
@@ -20,7 +20,7 @@ $max = 52;
 $type = 'shuffle';
 
 // instanciate the provable class
-$provable = new DBD\Provable\Provable($clientSeed, $serverSeed, $min, $max, $type);
+$provable = new Gamebetr\Provable\Provable($clientSeed, $serverSeed, $min, $max, $type);
 
 // get the results
 print $provable->results();
@@ -38,8 +38,8 @@ The class constructor takes the optional parameters, clientSeed, serverSeed, min
 The init method is just a static constructor. It allows you to do the following:
 
 ```
-$provable = DBD\Provable::init()
-// returns an instance of DBD\Provable
+$provable = Gamebetr\Provable::init()
+// returns an instance of Gamebetr\Provable
 ```
 
 ### setClientSeed(string $clientSeed = null)

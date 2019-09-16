@@ -1,10 +1,10 @@
 {
-    "name": "dbdnet/provable",
+    "name": "gamebetr/provable",
     "description": "Package that provides the ability to create provably fair numbers and shuffles",
     "authors": [
         {
             "name": "Steve Harmeyer",
-            "email": "sharmeyer@dbd.net"
+            "email": "sharmeyer@gamebetr.com"
         }
     ],
     "require": {
@@ -12,7 +12,7 @@
     },
     "autoload": {
         "psr-4": {
-            "DBD\\Provable\\": "src/"
+            "Gamebetr\\Provable\\": "src/"
         }
     }
 }

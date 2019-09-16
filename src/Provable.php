@@ -1,6 +1,6 @@
 <?php
 
-namespace DBD\Provable;
+namespace Gamebetr\Provable;
 
 class Provable
 {
@@ -181,11 +181,12 @@ class Provable
      * returns the results
      * @return int|array
      */
-    public function results() {
-        if($this->getType() == 'number') {
+    public function results()
+    {
+        if ($this->getType() == 'number') {
             return $this->number();
         }
-        if($this->getType() == 'shuffle') {
+        if ($this->getType() == 'shuffle') {
             return $this->shuffle();
         }
     }

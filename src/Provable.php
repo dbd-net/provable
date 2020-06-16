@@ -2,7 +2,7 @@
 
 namespace Gamebetr\Provable;
 
-class Provable
+class Provable implements ProvableInterface
 {
     /**
      * client seed
@@ -65,9 +65,9 @@ class Provable
      * @param int $min
      * @param int $max
      * @param string $type
-     * @return Provable
+     * @return \Gamebetr\Provable\ProvableInterface
      */
-    public static function init(string $clientSeed = null, string $serverSeed = null, int $min = 0, int $max = 0, string $type = 'number')
+    public static function init(string $clientSeed = null, string $serverSeed = null, int $min = 0, int $max = 0, string $type = 'number'): ProvableInterface
     {
         return new static($clientSeed, $serverSeed, $min, $max, $type);
     }
@@ -75,9 +75,9 @@ class Provable
     /**
      * client seed setter
      * @param string $clientSeed
-     * @return Provable
+     * @return \Gamebetr\Provable\ProvableInterface
      */
-    public function setClientSeed(string $clientSeed = null)
+    public function setClientSeed(string $clientSeed = null): ProvableInterface
     {
         $this->clientSeed = $clientSeed ?? $this->generateRandomSeed();
         return $this;
@@ -87,7 +87,7 @@ class Provable
      * client seed getter
      * @return string
      */
-    public function getClientSeed()
+    public function getClientSeed():  string
     {
         return $this->clientSeed;
     }
@@ -95,9 +95,9 @@ class Provable
     /**
      * server seed setter
      * @param string $serverSeed
-     * @return Provable
+     * @return \Gamebetr\Provable\ProvableInterface
      */
-    public function setServerSeed(string $serverSeed = null)
+    public function setServerSeed(string $serverSeed = null): ProvableInterface
     {
         $this->serverSeed = $serverSeed ?? $this->generateRandomSeed();
         return $this;
@@ -107,7 +107,7 @@ class Provable
      * server seed getter
      * @return string
      */
-    public function getServerSeed()
+    public function getServerSeed(): string
     {
         return $this->serverSeed;
     }
@@ -116,7 +116,7 @@ class Provable
      * hashed server seed getter
      * @return string
      */
-    public function getHashedServerSeed()
+    public function getHashedServerSeed(): string
     {
         return hash('sha256', $this->getServerSeed());
     }
@@ -124,9 +124,9 @@ class Provable
     /**
      * min setter
      * @param int $min
-     * @return Provable
+     * @return \Gamebetr\Provable\ProvableInterface
      */
-    public function setMin(int $min)
+    public function setMin(int $min): ProvableInterface
     {
         $this->min = $min;
         return $this;
@@ -136,7 +136,7 @@ class Provable
      * min getter
      * @return int
      */
-    public function getMin()
+    public function getMin(): int
     {
         return $this->min;
     }
@@ -144,9 +144,9 @@ class Provable
     /**
      * max setter
      * @param int $max
-     * @return Provable
+     * @return \Gamebetr\Provable\ProvableInterface
      */
-    public function setMax(int $max)
+    public function setMax(int $max): ProvableInterface
     {
         $this->max = $max;
         return $this;
@@ -156,7 +156,7 @@ class Provable
      * max getter
      * @return int
      */
-    public function getMax()
+    public function getMax(): int
     {
         return $this->max;
     }
@@ -164,9 +164,9 @@ class Provable
     /**
      * type setter
      * @param string $type - number|shuffle
-     * @return Provable
+     * @return \Gamebetr\Provable\ProvableInterface
      */
-    public function setType(string $type)
+    public function setType(string $type): ProvableInterface
     {
         if (!in_array($type, ['number', 'shuffle'])) {
             throw new \Exception("Invalid type $type", 400);
@@ -179,7 +179,7 @@ class Provable
      * type getter
      * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
@@ -204,7 +204,7 @@ class Provable
      * @param int $maximumNumber
      * @return Int
      */
-    public function number(int $minimumNumber = null, int $maximumNumber = null)
+    public function number(int $minimumNumber = null, int $maximumNumber = null) :int
     {
         if ($minimumNumber !== null) {
             $this->setMin($minimumNumber);
@@ -227,7 +227,7 @@ class Provable
      * @param int $maximumNumber
      * @return array
      */
-    public function shuffle(int $minimumNumber = null, int $maximumNumber = null)
+    public function shuffle(int $minimumNumber = null, int $maximumNumber = null):array
     {
         if ($minimumNumber !== null) {
             $this->setMin($minimumNumber);
@@ -250,7 +250,7 @@ class Provable
      * generate a seed integer from server seed and client seed
      * @return int
      */
-    private function generateSeedInteger()
+    private function generateSeedInteger(): int
     {
         return hexdec(substr(hash_hmac('sha256', $this->getServerSeed(), $this->getClientSeed()), -8, 8));
     }
@@ -260,7 +260,7 @@ class Provable
      * @var int $seedLength
      * @return string
      */
-    private function generateRandomSeed()
+    private function generateRandomSeed(): string
     {
         return bin2hex(openssl_random_pseudo_bytes(32));
     }

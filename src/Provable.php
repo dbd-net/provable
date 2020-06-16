@@ -34,6 +34,13 @@ class Provable
      */
     private $type;
 
+  /**
+   * If the random seed has already been set for mt_rand().
+   *
+   * @var bool
+   */
+  protected $random_seed_set = FALSE;
+
     /**
      * class constructor
      * @param string $clientSeed
@@ -205,7 +212,11 @@ class Provable
         if ($maximumNumber !== null) {
             $this->setMax($maximumNumber);
         }
-        mt_srand($this->generateSeedInteger());
+        if (!$this->random_seed_set) {
+            $this->random_seed_set = TRUE;
+            mt_srand($this->generateSeedInteger());
+        }
+
         return mt_rand($this->getMin(), $this->getMax());
     }
 

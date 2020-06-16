@@ -10,9 +10,17 @@
     "require": {
         "php": ">=7.2"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^9.2"
+    },
     "autoload": {
         "psr-4": {
             "Gamebetr\\Provable\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Gamebetr\\Provable\\Tests\\": "tests/"
         }
     }
 }

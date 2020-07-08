@@ -1,13 +1,14 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Gamebetr\Provable;
 
 /**
- * Interface ProvableInterface
+ * Interface ProvableInterface.
  */
-interface ProvableInterface {
-
+interface ProvableInterface
+{
     /**
      * Get the client seed.
      *
@@ -66,7 +67,7 @@ interface ProvableInterface {
      * @return int
      *   The randomly generated number.
      */
-    public function number(int $minimumNumber = NULL, int $maximumNumber = NULL): int;
+    public function number(int $minimumNumber = null, int $maximumNumber = null): int;
 
     /**
      * Returns the results for the provable.
@@ -84,7 +85,7 @@ interface ProvableInterface {
      * @return \Gamebetr\Provable\ProvableInterface
      *   An instance of this object.
      */
-    public function setClientSeed(string $clientSeed = NULL): ProvableInterface;
+    public function setClientSeed(string $clientSeed = null): self;
 
     /**
      * Set the maximum allowed random number value.
@@ -95,7 +96,7 @@ interface ProvableInterface {
      * @return \Gamebetr\Provable\ProvableInterface
      *   An instance of this object.
      */
-    public function setMax(int $max): ProvableInterface;
+    public function setMax(int $max): self;
 
     /**
      * Set the minimum allowed random number.
@@ -106,7 +107,7 @@ interface ProvableInterface {
      * @return \Gamebetr\Provable\ProvableInterface
      *   An instance of this object.
      */
-    public function setMin(int $min): ProvableInterface;
+    public function setMin(int $min): self;
 
     /**
      * Set the server seed.
@@ -117,7 +118,7 @@ interface ProvableInterface {
      * @return \Gamebetr\Provable\ProvableInterface
      *   An instance of this object.
      */
-    public function setServerSeed(string $serverSeed = NULL): ProvableInterface;
+    public function setServerSeed(string $serverSeed = null): self;
 
     /**
      * Set the provable type.
@@ -128,7 +129,7 @@ interface ProvableInterface {
      * @return \Gamebetr\Provable\ProvableInterface
      *   An instance of this object.
      */
-    public function setType(string $type): ProvableInterface;
+    public function setType(string $type): self;
 
     /**
      * Get a random shuffle of numbers within a range.
@@ -143,6 +144,13 @@ interface ProvableInterface {
      * @return int[]|array
      *   Returns a random shuffle of numbers within a range.
      */
-    public function shuffle(int $minimumNumber = NULL, int $maximumNumber = NULL): array;
+    public function shuffle(int $minimumNumber = null, int $maximumNumber = null): array;
 
+    /**
+     * Reset the provable instance in order to start the results over from the top.
+     *
+     * @return \Gamebetr\Provable\ProvableInterface
+     *   An instance of this object.
+     */
+    public function reset(): self;
 }

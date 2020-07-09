@@ -5,44 +5,44 @@ namespace Gamebetr\Provable;
 class Provable implements ProvableInterface
 {
     /**
-     * client seed
-     * @var string $clientSeed
+     * client seed.
+     * @var string
      */
     private $clientSeed;
 
     /**
-     * server seed
-     * @var string $serverSeed
+     * server seed.
+     * @var string
      */
     private $serverSeed;
 
     /**
-     * min number
-     * @var int $min
+     * min number.
+     * @var int
      */
     private $min;
 
     /**
-     * max number
-     * @var int $max
+     * max number.
+     * @var int
      */
     private $max;
 
     /**
-     * type
-     * @var string $type
+     * type.
+     * @var string
      */
     private $type;
 
-  /**
-   * If the random seed has already been set for mt_rand().
-   *
-   * @var bool
-   */
-  protected $random_seed_set = FALSE;
+    /**
+     * If the random seed has already been set for mt_rand().
+     *
+     * @var bool
+     */
+    protected $random_seed_set = false;
 
     /**
-     * class constructor
+     * class constructor.
      * @param string $clientSeed
      * @param string $serverSeed
      * @param int $min
@@ -59,7 +59,7 @@ class Provable implements ProvableInterface
     }
 
     /**
-     * static constructor
+     * static constructor.
      * @param string $clientSeed
      * @param string $serverSeed
      * @param int $min
@@ -73,18 +73,19 @@ class Provable implements ProvableInterface
     }
 
     /**
-     * client seed setter
+     * client seed setter.
      * @param string $clientSeed
      * @return \Gamebetr\Provable\ProvableInterface
      */
     public function setClientSeed(string $clientSeed = null): ProvableInterface
     {
         $this->clientSeed = $clientSeed ?? $this->generateRandomSeed();
+
         return $this;
     }
 
     /**
-     * client seed getter
+     * client seed getter.
      * @return string
      */
     public function getClientSeed():  string
@@ -93,18 +94,19 @@ class Provable implements ProvableInterface
     }
 
     /**
-     * server seed setter
+     * server seed setter.
      * @param string $serverSeed
      * @return \Gamebetr\Provable\ProvableInterface
      */
     public function setServerSeed(string $serverSeed = null): ProvableInterface
     {
         $this->serverSeed = $serverSeed ?? $this->generateRandomSeed();
+
         return $this;
     }
 
     /**
-     * server seed getter
+     * server seed getter.
      * @return string
      */
     public function getServerSeed(): string
@@ -113,7 +115,7 @@ class Provable implements ProvableInterface
     }
 
     /**
-     * hashed server seed getter
+     * hashed server seed getter.
      * @return string
      */
     public function getHashedServerSeed(): string
@@ -122,18 +124,19 @@ class Provable implements ProvableInterface
     }
 
     /**
-     * min setter
+     * min setter.
      * @param int $min
      * @return \Gamebetr\Provable\ProvableInterface
      */
     public function setMin(int $min): ProvableInterface
     {
         $this->min = $min;
+
         return $this;
     }
 
     /**
-     * min getter
+     * min getter.
      * @return int
      */
     public function getMin(): int
@@ -142,18 +145,19 @@ class Provable implements ProvableInterface
     }
 
     /**
-     * max setter
+     * max setter.
      * @param int $max
      * @return \Gamebetr\Provable\ProvableInterface
      */
     public function setMax(int $max): ProvableInterface
     {
         $this->max = $max;
+
         return $this;
     }
 
     /**
-     * max getter
+     * max getter.
      * @return int
      */
     public function getMax(): int
@@ -162,21 +166,22 @@ class Provable implements ProvableInterface
     }
 
     /**
-     * type setter
+     * type setter.
      * @param string $type - number|shuffle
      * @return \Gamebetr\Provable\ProvableInterface
      */
     public function setType(string $type): ProvableInterface
     {
-        if (!in_array($type, ['number', 'shuffle'])) {
+        if (! in_array($type, ['number', 'shuffle'])) {
             throw new \Exception("Invalid type $type", 400);
         }
         $this->type = $type;
+
         return $this;
     }
 
     /**
-     * type getter
+     * type getter.
      * @return string
      */
     public function getType(): string
@@ -185,7 +190,7 @@ class Provable implements ProvableInterface
     }
 
     /**
-     * returns the results
+     * returns the results.
      * @return int|array
      */
     public function results()
@@ -199,10 +204,10 @@ class Provable implements ProvableInterface
     }
 
     /**
-     * returns a random number within a range
+     * returns a random number within a range.
      * @param int $minimumNumber
      * @param int $maximumNumber
-     * @return Int
+     * @return int
      */
     public function number(int $minimumNumber = null, int $maximumNumber = null) :int
     {
@@ -212,8 +217,8 @@ class Provable implements ProvableInterface
         if ($maximumNumber !== null) {
             $this->setMax($maximumNumber);
         }
-        if (!$this->random_seed_set) {
-            $this->random_seed_set = TRUE;
+        if (! $this->random_seed_set) {
+            $this->random_seed_set = true;
             mt_srand($this->generateSeedInteger());
         }
 
@@ -222,7 +227,7 @@ class Provable implements ProvableInterface
 
     /**
      * returns a random shuffle of numbers within a range
-     * uses fisher yates shuffle (https://en.wikipedia.org/wiki/Fisher–Yates_shuffle)
+     * uses fisher yates shuffle (https://en.wikipedia.org/wiki/Fisher–Yates_shuffle).
      * @param int $minimumNumber
      * @param int $maximumNumber
      * @return array
@@ -243,11 +248,12 @@ class Provable implements ProvableInterface
             $range[$i] = $range[$j];
             $range[$j] = $tmp;
         }
+
         return $range;
     }
 
     /**
-     * generate a seed integer from server seed and client seed
+     * generate a seed integer from server seed and client seed.
      * @return int
      */
     private function generateSeedInteger(): int
@@ -256,12 +262,23 @@ class Provable implements ProvableInterface
     }
 
     /**
-     * generate a random seed
-     * @var int $seedLength
+     * generate a random seed.
+     * @var int
      * @return string
      */
     private function generateRandomSeed(): string
     {
         return bin2hex(openssl_random_pseudo_bytes(32));
+    }
+
+    /**
+     * Reset the class to start the results over.
+     * @return self
+     */
+    public function reset(): ProvableInterface
+    {
+        $this->random_seed_set = false;
+
+        return $this;
     }
 }

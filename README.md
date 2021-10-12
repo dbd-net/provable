@@ -6,7 +6,7 @@ This package provides the means to create provibly fair random numbers and prova
 
 via composer:
 ```
-composer require gamebetr/provable ^1.0
+composer require dbd-net/provable ^1.0
 ```
 
 ## Basic Useage
